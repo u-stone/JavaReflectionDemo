@@ -1,0 +1,11 @@
+# Java 编译产物
+bin/
+*.class
+
+# IDE 配置文件
+.vscode/*
+!.vscode/launch.json
+
+# 系统文件
+.DS_Store
+Thumbs.db

@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Reflection Demo",
+            "request": "launch",
+            "mainClass": "com.demo.reflection.ReflectionDemo",
+            "projectName": "JavaReflectionDemo"
+        },
+        {
+            "type": "java",
+            "name": "Dynamic Proxy Demo",
+            "request": "launch",
+            "mainClass": "com.demo.reflection.DynamicProxyDemo",
+            "projectName": "JavaReflectionDemo"
+        }
+    ]
+}
