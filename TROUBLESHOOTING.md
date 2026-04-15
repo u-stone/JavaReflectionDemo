@@ -104,19 +104,16 @@ VS Code 的 Java 语言服务器（基于 Eclipse JDT）在启动时会尝试解
 3.  **手动指定源码路径**：
     *   如果在 `src` 下的代码文件上方没有出现 `Run | Debug` 字样，尝试在资源管理器中右键点击 `src` 文件夹，选择 `Java: Add Folder to Java Source Path`（如果可用）。
 
-### 解决方案 (Level 2 - 深度修复)
-如果清理缓存无效，请尝试以下手动强制识别方法：
+### 解决方案 (Level 2 - 确定性修复)
+如果清理缓存和图形化配置均无效，**手动注入项目元数据文件**是解决此问题的“杀手锏”。VS Code 的 Java 插件底层基于 Eclipse JDT，它会优先读取根目录下的 `.project` 和 `.classpath` 文件。
 
-1.  **手动配置类路径 (Configure Classpath)**:
-    *   执行命令 `Java: Configure Classpath`。
-    *   在 **Sources** 标签页中点击 **Add**，手动选择项目下的 `src` 文件夹。
-2.  **强制指定源码路径 (settings.json)**:
-    *   在 `.vscode/settings.json` 中添加：`"java.project.sourcePaths": ["src"]`。
-3.  **终极手段：手动创建项目元数据**:
-    *   在项目根目录下手动创建 `.project` 和 `.classpath` 文件。
-    *   这会欺骗 VS Code 的底层引擎（Eclipse JDT.LS），强行将其作为合法的 Java 项目加载。
+1.  **手动创建项目描述文件**:
+    *   在项目根目录下手动创建 `.project` 和 `.classpath` 文件（内容见下文）。
+    *   **效果**：这会强行跳过 VS Code 的自动识别逻辑，直接告诉插件：“这是一个合法的 Java 项目，源码在 `src`，产物在 `bin`”。
+2.  **重启 VS Code**:
+    *   创建文件后，彻底重启编辑器。观察右下角，插件会立即根据这些文件建立项目模型。
 
-**.project 内容示例**:
+**.project 内容示例 (针对本项目)**:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
@@ -135,7 +132,7 @@ VS Code 的 Java 语言服务器（基于 Eclipse JDT）在启动时会尝试解
 </projectDescription>
 ```
 
-**.classpath 内容示例**:
+**.classpath 内容示例 (针对本项目)**:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>

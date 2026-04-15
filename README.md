@@ -17,16 +17,13 @@
 JavaReflectionDemo/
 ├── .vscode/
 │   └── launch.json          # VS Code 调试配置
-├── src/
-│   └── com/demo/reflection/
-│       ├── CustomAnnotation.java   # 自定义运行时注解
-│       ├── TargetInterface.java     # 演示用的基础接口
-│       ├── TargetClass.java         # 核心反射目标类
-│       ├── ReflectionDemo.java      # 综合反射功能演示主类
-│       └── DynamicProxyDemo.java    # 动态代理机制演示主类
-├── bin/                      # 编译后的类文件存放目录（运行脚本后生成）
-└── README.md                 # 本说明文档
-└── REFLECTION_GUIDE.md       # Java 反射深度原理与指南
+├── src/                     # 源代码目录
+├── bin/                     # 编译产物目录
+├── .project                 # Eclipse 项目描述文件（用于 VS Code 识别项目）
+├── .classpath               # Eclipse 类路径文件（用于 VS Code 识别源码根目录）
+├── README.md                # 本运行指南
+├── REFLECTION_GUIDE.md      # Java 反射深度原理指南
+└── TROUBLESHOOTING.md       # 疑难排查手册（包含环境配置报错解决）
 ```
 
 ## 3. 命令行运行方式
