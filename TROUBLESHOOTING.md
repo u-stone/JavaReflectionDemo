@@ -56,5 +56,21 @@ Java 运行时的类路径（Classpath）配置不正确。
 
 ---
 
+## 3. 插件激活失败：Test Runner for Java 依赖缺失
+
+### 问题描述
+启动 VS Code 时弹出错误：`Cannot activate the 'Test Runner for Java' extension because it depends on the 'Language Support for Java(TM) by Red Hat' extension from 'Red Hat', which is not installed.`
+
+### 核心原因
+VS Code 的 Java 功能是分层加载的。`Test Runner`（测试运行器）属于高级功能，它必须建立在 `Language Support`（核心语法支持）之上。由于某种原因（如手动删除了部分插件或安装中断），核心插件丢失，导致高级功能无法激活。
+
+### 解决方案
+1.  **直接安装**：点击报错弹窗右下角的 **Install**。
+2.  **手动补全**：
+    *   进入 Extensions 搜索并安装 `Language Support for Java(TM) by Red Hat`。
+    *   或者直接搜索并安装 **Extension Pack for Java**，它会自动确保所有必需的 6 个核心组件全部就绪。
+
+---
+
 ## 结语
 记录每一个报错，不仅是为了解决当下的问题，更是为了构建属于自己的知识库。欢迎随时补充您遇到的其他“资产”。
