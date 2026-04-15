@@ -54,13 +54,29 @@ java -cp bin com.demo.reflection.DynamicProxyDemo
 
 本项目已预配置了 `.vscode/launch.json`，您可以直接在编辑器中打断点观察反射的执行过程：
 
+### 4.1 设置断点 (Breakpoints)
+*   打开 `src/com/demo/reflection/ReflectionDemo.java`。
+*   在代码行号左侧点击，设置红色小圆点（断点）。
+*   **推荐位置**：
+    *   `field.setAccessible(true);`：观察反射如何突破私有权限。
+    *   `method.invoke(obj, ...);`：观察私有方法的动态调用。
+
+### 4.2 启动调试会话
 1.  **打开项目**: 使用 VS Code 打开 `JavaReflectionDemo` 文件夹。
-2.  **设置断点**: 打开 `src/com/demo/reflection/ReflectionDemo.java`，在您感兴趣的反射调用行（如 `field.setAccessible(true)` 或 `method.invoke(...)`）点击行号左侧设置断点。
-3.  **启动调试**:
-    *   点击左侧活动栏的 **“运行和调试”** 图标 (Ctrl+Shift+D)。
-    *   在顶部的下拉菜单中选择 **"Reflection Demo"** 或 **"Dynamic Proxy Demo"**。
-    *   点击绿色的运行按钮或按 **F5**。
-4.  **观察变量**: 此时程序会停在断点处。您可以查看“变量”面板，观察反射是如何“无视”封装性直接读取和修改 `TargetClass` 内部私有变量的值。
+2.  **选择配置**: 点击左侧活动栏的 **“运行和调试”** 图标 (Ctrl+Shift+D)。
+3.  **开始运行**: 在顶部的下拉菜单中选择 **"Reflection Demo"** 或 **"Dynamic Proxy Demo"**，点击绿色的播放按钮或按 **F5**。
+
+### 4.3 核心观察点（反射特有）
+程序暂停在断点时，请重点关注：
+*   **变量 (Variables) 面板**: 展开 `instance` 对象，观察原本无法直接访问的 `privateField` 如何被反射读取并实时修改。
+*   **调试控制台 (Debug Console)**: 您可以直接输入表达式（如 `instance.getPrivateField()`）来实时验证反射修改后的结果。
+*   **堆栈跟踪 (Call Stack)**: 观察 `ReflectionDemo` 如何通过 `Method.invoke` 进入目标方法。
+
+### 4.4 动态代理调试
+如果您调试的是 **Dynamic Proxy Demo**:
+*   在 `InvocationHandler` 的 `invoke` 方法内打断点。
+*   当您通过代理对象调用方法时，调试器会立即跳转到处理器中。
+*   观察代理对象的实际类型，通常显示为 `$Proxy0`。
 
 ## 5. 进一步学习
 关于 Java 反射的底层实现原理、JVM 内部机制以及具体的编写最佳实践，请参阅本项目中的 [REFLECTION_GUIDE.md](./REFLECTION_GUIDE.md)。
