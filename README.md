@@ -78,5 +78,6 @@ java -cp bin com.demo.reflection.DynamicProxyDemo
 *   当您通过代理对象调用方法时，调试器会立即跳转到处理器中。
 *   观察代理对象的实际类型，通常显示为 `$Proxy0`。
 
-## 5. 进一步学习
-关于 Java 反射的底层实现原理、JVM 内部机制以及具体的编写最佳实践，请参阅本项目中的 [REFLECTION_GUIDE.md](./REFLECTION_GUIDE.md)。
+## 5. 进一步学习与疑难解答
+*   **深度原理解析**: 参阅 [REFLECTION_GUIDE.md](./REFLECTION_GUIDE.md)。
+*   **常见问题与报错 (珍贵的资产)**: 参阅 [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)。
