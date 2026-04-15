@@ -114,9 +114,39 @@ VS Code 的 Java 语言服务器（基于 Eclipse JDT）在启动时会尝试解
     *   在 `.vscode/settings.json` 中添加：`"java.project.sourcePaths": ["src"]`。
 3.  **终极手段：手动创建项目元数据**:
     *   在项目根目录下手动创建 `.project` 和 `.classpath` 文件。
-    *   这会欺骗 VS Code 的底层引擎（Eclipse JDT.LS），强行将其作为合法的 Java 项目加载。具体文件内容可参考本项目代码库中的相关模板。
+    *   这会欺骗 VS Code 的底层引擎（Eclipse JDT.LS），强行将其作为合法的 Java 项目加载。
+
+**.project 内容示例**:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>JavaReflectionDemo</name>
+	<comment></comment>
+	<projects></projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments></arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+</projectDescription>
+```
+
+**.classpath 内容示例**:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
+```
 
 ---
 
 ## 结语
+
 记录每一个报错，不仅是为了解决当下的问题，更是为了构建属于自己的知识库。欢迎随时补充您遇到的其他“资产”。
